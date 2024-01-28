@@ -4,7 +4,7 @@ import Button from "../Components/Button";
 import Input from "../Components/Input";
 
 function Login() {
-    const [isLogin, setIsLogin] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
 
     const click = () => {
        setIsLogin(!isLogin)
@@ -17,34 +17,45 @@ function Login() {
 
 
         return (
-            <div className="row overflow-hidden">
-                <div className="col-6 border border-primary">
-                    <div className="height100 mt-5 mb-5 rounded-end-circle border border-primary">
+            <div className="row overflow-hidden bg-warning">
+                <div className="col-6">
+                    <div className="height100 mt-5 mb-5 rounded-end-circle bg-light">
                         <div className="position-absolute">
-                            <h1>Bem vindo!</h1>
-                            <p>
+                            <h1 className="title">Seja Bem Vindo!</h1>
+                            <p className="mt-5">
                                 Cuidar da saúde do seu pet, ficou ainda mais facíl e acessível.
                                <br />Compre tudo o que o seu pet precisa e receba na sua casa.
                             </p>
-                            <Button handleClick={click}>Fazer login</Button>
+                            <Button handleClick={click}>Cadastrse-se</Button>
                         </div>
                     </div>
                 </div>
-                <div className="col-6 border border-success">
-                    <div className="shadow p-3 mb-5 bg-body-tertiary rounded border border-secondary-subtle position-absolute-right">
+                <div className="col-6">
+                    <div className=" position-absolute-right bg-warning">
                         {
                             isLogin ?
-                            <h1>fds</h1>
+                            <div className="width-text">
+                                <h2 className="subtitle">Cuidamos do seu pet como se fosse da família!</h2>
+                                <p className="mt-3">
+                                    Oferecemos todos os serviços para o seu animalzinho
+                                    de estimação, buscando sempre unir qualidade no atendimento ao carrinho. 
+                                </p>
+                                <p>
+                                    Aqui você encontra especialidades da odontologica e cuida da saúde oral do seu pet até acupuntura.
+                                </p>
+                            </div>
                             :
-                            <form>
-                                <Input type="text" labelTxt="Nome:" />
-                                <Input type="email" labelTxt="E-mail:" />
-                                <Input type="text" labelTxt="CPF:" />
-                                <Input type="numeric" labelTxt="Telefone:" />
-                               <div className="text-end">
-                                <Button handleClick={salvarUsuario}>Salvar</Button>
-                               </div>
-                            </form>
+                            <div className="shadow p-3 mb-5 rounded width-login">
+                                <form>
+                                    <Input type="text" labelTxt="Nome:" />
+                                    <Input type="email" labelTxt="E-mail:" />
+                                    <Input type="text" labelTxt="CPF:" />
+                                    <Input type="numeric" labelTxt="Telefone:" />
+                                    <div className="text-end">
+                                        <Button handleClick={salvarUsuario}>Salvar</Button>
+                                    </div>
+                                </form>
+                            </div>
                         }
                     </div>
                 </div>

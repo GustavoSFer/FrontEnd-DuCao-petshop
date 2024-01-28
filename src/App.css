@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .row {
@@ -21,4 +22,24 @@
   position: absolute;
   top: 30%;
   right: 15%;
+}
+
+.title {
+  font-family: cursive;
+  font-size: 40px;
+  font-weight: 800;
+}
+
+.subtitle {
+  font-family: cursive;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.width-text {
+  max-width: 420px;
+}
+
+.width-login {
+  width: 450px;
 }
