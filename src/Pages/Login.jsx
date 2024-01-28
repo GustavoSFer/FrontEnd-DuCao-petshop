@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import '../App.css';
 import Button from "../Components/Button";
 
 function Login() {
-    let clicado = false;
+    const [isLogin, setIsLogin] = useState(false);
+
     const click = () => {
-        console.log("Clicadoooo!")
-        clicado = !clicado
-        console.log(clicado)
+       setIsLogin(!isLogin)
     }
 
 
@@ -27,8 +26,7 @@ function Login() {
                 </div>
                 <div className="col-6 border border-success">
                     <div>
-                        {clicado ? <h1>fds</h1> : <p>kkkkk</p>}
-                        {console.log(clicado)}
+                        {isLogin ? <h1>fds</h1> : <p>kkkkk</p>}
                     </div>
                 </div>
             </div>
