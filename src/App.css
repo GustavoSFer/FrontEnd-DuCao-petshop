@@ -16,3 +16,9 @@
   top: 30%;
   left: 5%;
 }
+
+.position-absolute-right {
+  position: absolute;
+  top: 30%;
+  right: 15%;
+}
