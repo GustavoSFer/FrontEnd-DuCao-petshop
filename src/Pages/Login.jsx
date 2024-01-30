@@ -52,7 +52,7 @@ function Login() {
                                     <Input type="text" labelTxt="CPF:" />
                                     <Input type="numeric" labelTxt="Telefone:" />
                                     <div className="text-end">
-                                        <Button handleClick={salvarUsuario}>Salvar</Button>
+                                        <Button handleClick={salvarUsuario}>Cadastrar</Button>
                                     </div>
                                 </form>
                             </div>
