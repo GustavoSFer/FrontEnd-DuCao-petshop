@@ -51,6 +51,8 @@ function Login() {
                                     <Input type="email" labelTxt="E-mail:" />
                                     <Input type="text" labelTxt="CPF:" />
                                     <Input type="numeric" labelTxt="Telefone:" />
+                                    <Input type="password" labelTxt="Senha:" />
+                                    <Input type="password" labelTxt="Confirme a senha:" />
                                     <div className="text-end">
                                         <Button handleClick={salvarUsuario}>Cadastrar</Button>
                                     </div>

@@ -17,8 +17,23 @@ const verificaCPF = (cpf) => {
     return null;
 }
 
+const verificaSenha = (senha) => {
+    const regex = "/\W|_/";
+
+   return regex.test(senha);
+}
+
+const verificaMesmaSenha = (senha, confirma) => {
+    if (senha === confirma) {
+        return true;
+    }
+    return false;
+}
+
 export {
     verificaNome,
     isValidEmail,
     verificaCPF,
+    verificaSenha,
+    verificaMesmaSenha,
 }
