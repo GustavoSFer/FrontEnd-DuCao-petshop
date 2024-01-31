@@ -1,24 +1,24 @@
-const verificaNome = (nome) {
-    if (nome == "" || nome.lenght < 3) {
-        return "Nome não é valido!";
+const verificaNome = (nome) => {
+    if (nome == "" || nome == null || nome.length <= 3 ) {
+        return false;
     }
-    return null;
+    return true;
 }
 
-const isValidEmail = (email) => {
+const verificaEmail = (email) => {
     const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
     return regex.test(email);
   };
 
 const verificaCPF = (cpf) => {
-    if (cpf.lenght < 10 || cpf.lenght > 12) {
-        return "CPF inválido!"
+    if (cpf.length < 10 || cpf.length > 12) {
+        return false
     }
-    return null;
+    return true;
 }
 
 const verificaSenha = (senha) => {
-    const regex = "/\W|_/";
+    const regex = /\W|_/;
 
    return regex.test(senha);
 }
@@ -32,7 +32,7 @@ const verificaMesmaSenha = (senha, confirma) => {
 
 export {
     verificaNome,
-    isValidEmail,
+    verificaEmail,
     verificaCPF,
     verificaSenha,
     verificaMesmaSenha,

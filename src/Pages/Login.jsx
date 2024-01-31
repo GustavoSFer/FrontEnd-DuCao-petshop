@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import '../App.css';
 import Button from "../Components/Button";
 import Input from "../Components/Input";
+import { verificaNome, verificaEmail } from "../Util/validaLogin";
 
 function Login() {
     const [isLogin, setIsLogin] = useState(true);
+    const [nome, setNome] = useState();
+    const [email, SetEmail] = useState();
 
     const click = () => {
        setIsLogin(!isLogin)
@@ -12,7 +15,11 @@ function Login() {
 
     const salvarUsuario = (e) => {
         e.preventDefault();
-        console.log("Salvar!");
+        const isValidNome = verificaNome(nome);
+        const isvalidEmail = verificaEmail(email)
+
+        console.log("nome: " + isValidNome)
+        console.log("E-mail: " + isvalidEmail)
     }
 
 
@@ -47,8 +54,8 @@ function Login() {
                             :
                             <div className="shadow p-3 mb-5 rounded width-login">
                                 <form>
-                                    <Input type="text" labelTxt="Nome:" />
-                                    <Input type="email" labelTxt="E-mail:" />
+                                    <Input type="text" labelTxt="Nome:" handleChange={(e) => setNome(e.target.value)} />
+                                    <Input type="email" labelTxt="E-mail:" handleChange={(e) => SetEmail(e.target.value)} />
                                     <Input type="text" labelTxt="CPF:" />
                                     <Input type="numeric" labelTxt="Telefone:" />
                                     <Input type="password" labelTxt="Senha:" />
