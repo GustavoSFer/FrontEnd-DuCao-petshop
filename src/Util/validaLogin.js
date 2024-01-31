@@ -11,6 +11,8 @@ const verificaEmail = (email) => {
   };
 
 const verificaCPF = (cpf) => {
+    cpf = cpf.replace(".", "").replace("-","");
+    cpf = cpf.replace(".", "").replace("-","");
     if (cpf.length <= 10 || cpf.length >= 12) {
         return false
     }
