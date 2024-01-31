@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import '../App.css';
 import Button from "../Components/Button";
 import Input from "../Components/Input";
-import { verificaNome, verificaEmail } from "../Util/validaLogin";
+import { verificaNome, verificaEmail, verificaCPF } from "../Util/validaLogin";
 
 function Login() {
     const [isLogin, setIsLogin] = useState(true);
     const [nome, setNome] = useState();
     const [email, SetEmail] = useState();
+    const [cpf, setCpf] = useState();
 
     const click = () => {
        setIsLogin(!isLogin)
@@ -16,10 +17,13 @@ function Login() {
     const salvarUsuario = (e) => {
         e.preventDefault();
         const isValidNome = verificaNome(nome);
-        const isvalidEmail = verificaEmail(email)
+        const isvalidEmail = verificaEmail(email);
 
-        console.log("nome: " + isValidNome)
-        console.log("E-mail: " + isvalidEmail)
+        const isValidCPF = verificaCPF(cpf);
+
+        console.log("nome: " + isValidNome);
+        console.log("E-mail: " + isvalidEmail);
+        console.log("CPF: " + isValidCPF);
     }
 
 
@@ -56,7 +60,7 @@ function Login() {
                                 <form>
                                     <Input type="text" labelTxt="Nome:" handleChange={(e) => setNome(e.target.value)} />
                                     <Input type="email" labelTxt="E-mail:" handleChange={(e) => SetEmail(e.target.value)} />
-                                    <Input type="text" labelTxt="CPF:" />
+                                    <Input type="text" labelTxt="CPF:" handleChange={(e) => setCpf(e.target.value)} />
                                     <Input type="numeric" labelTxt="Telefone:" />
                                     <Input type="password" labelTxt="Senha:" />
                                     <Input type="password" labelTxt="Confirme a senha:" />
