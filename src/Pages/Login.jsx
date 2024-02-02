@@ -31,6 +31,10 @@ function Login() {
        // console.log("CPF: " + isValidCPF);
         console.log("Senha: " + isValidSenha);
         console.log("Mesma senha: " + isValidSenhaIgual);
+
+        if (!isValidSenha) {
+            alert("A senha deve conter no minimo 6 digitos e um caracter especial.")
+        }
     }
 
 
