@@ -20,6 +20,9 @@ const verificaCPF = (cpf) => {
 }
 
 const verificaSenha = (senha) => {
+    if (senha.length < 6) {
+        return false;
+    }
     const regex = /\W|_/;
 
    return regex.test(senha);

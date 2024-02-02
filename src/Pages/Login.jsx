@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import '../App.css';
 import Button from "../Components/Button";
 import Input from "../Components/Input";
-import { verificaNome, verificaEmail, verificaCPF } from "../Util/validaLogin";
+import { verificaNome, verificaEmail, verificaCPF, verificaSenha, verificaMesmaSenha } from "../Util/validaLogin";
 
 function Login() {
     const [isLogin, setIsLogin] = useState(true);
     const [nome, setNome] = useState();
     const [email, SetEmail] = useState();
     const [cpf, setCpf] = useState();
+    const [senha, setSenha] = useState();
+    const [senha2, setSenha2] = useState();
+
 
     const click = () => {
        setIsLogin(!isLogin)
@@ -16,14 +19,18 @@ function Login() {
 
     const salvarUsuario = (e) => {
         e.preventDefault();
-        const isValidNome = verificaNome(nome);
-        const isvalidEmail = verificaEmail(email);
+       // const isValidNome = verificaNome(nome);
+       // const isvalidEmail = verificaEmail(email);
+       // const isValidCPF = verificaCPF(cpf);
+        const isValidSenha = verificaSenha(senha);
+        const isValidSenhaIgual = verificaMesmaSenha(senha, senha2);
 
-        const isValidCPF = verificaCPF(cpf);
 
-        console.log("nome: " + isValidNome);
-        console.log("E-mail: " + isvalidEmail);
-        console.log("CPF: " + isValidCPF);
+        //console.log("nome: " + isValidNome);
+        //console.log("E-mail: " + isvalidEmail);
+       // console.log("CPF: " + isValidCPF);
+        console.log("Senha: " + isValidSenha);
+        console.log("Mesma senha: " + isValidSenhaIgual);
     }
 
 
@@ -62,8 +69,8 @@ function Login() {
                                     <Input type="email" labelTxt="E-mail:" handleChange={(e) => SetEmail(e.target.value)} />
                                     <Input type="text" labelTxt="CPF:" handleChange={(e) => setCpf(e.target.value)} />
                                     <Input type="numeric" labelTxt="Telefone:" />
-                                    <Input type="password" labelTxt="Senha:" />
-                                    <Input type="password" labelTxt="Confirme a senha:" />
+                                    <Input type="password" labelTxt="Senha:" handleChange={(e) => setSenha(e.target.value)} />
+                                    <Input type="password" labelTxt="Confirme a senha:" handleChange={(e) => setSenha2(e.target.value)} />
                                     <div className="text-end">
                                         <Button handleClick={salvarUsuario}>Cadastrar</Button>
                                     </div>
