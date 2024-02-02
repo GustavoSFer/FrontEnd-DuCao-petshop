@@ -11,6 +11,7 @@ function Login() {
     const [cpf, setCpf] = useState();
     const [senha, setSenha] = useState();
     const [senha2, setSenha2] = useState();
+    const [telefone, setTelefone] = useState("");
 
 
     const click = () => {
@@ -72,7 +73,7 @@ function Login() {
                                     <Input type="text" labelTxt="Nome:" handleChange={(e) => setNome(e.target.value)} />
                                     <Input type="email" labelTxt="E-mail:" handleChange={(e) => SetEmail(e.target.value)} />
                                     <Input type="text" labelTxt="CPF:" handleChange={(e) => setCpf(e.target.value)} />
-                                    <Input type="numeric" labelTxt="Telefone:" />
+                                    <Input type="numeric" labelTxt="Telefone:" handleChange={(e) => setTelefone(e.target.value)} />
                                     <Input type="password" labelTxt="Senha:" handleChange={(e) => setSenha(e.target.value)} />
                                     <Input type="password" labelTxt="Confirme a senha:" handleChange={(e) => setSenha2(e.target.value)} />
                                     <div className="text-end">
