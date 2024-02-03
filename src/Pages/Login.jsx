@@ -3,7 +3,7 @@ import '../App.css';
 import Button from "../Components/Button";
 import Input from "../Components/Input";
 import { verificaNome, verificaEmail, verificaCPF, verificaSenha, verificaMesmaSenha } from "../Util/validaLogin";
-import Entrar from "../Components/Entrar";
+import { novoUsuario } from "../Util/novoUsuario";
 
 function Login() {
     const [isLogin, setIsLogin] = useState(true);
@@ -23,22 +23,32 @@ function Login() {
 
     const salvarUsuario = (e) => {
         e.preventDefault();
-       // const isValidNome = verificaNome(nome);
-       // const isvalidEmail = verificaEmail(email);
-       // const isValidCPF = verificaCPF(cpf);
+        console.log("teste")
+        const isValidNome = verificaNome(nome);
+        const isvalidEmail = verificaEmail(email);
+        const isValidCPF = verificaCPF(cpf);
         const isValidSenha = verificaSenha(senha);
-        const isValidSenhaIgual = verificaMesmaSenha(senha, senha2);
-
-
-        //console.log("nome: " + isValidNome);
-        //console.log("E-mail: " + isvalidEmail);
-       // console.log("CPF: " + isValidCPF);
-        console.log("Senha: " + isValidSenha);
-        console.log("Mesma senha: " + isValidSenhaIgual);
+        const mesmaSenha = verificaMesmaSenha(senha, senha2);
 
         if (!isValidSenha) {
             alert("A senha deve conter no minimo 6 digitos e um caracter especial.")
         }
+        console.log("hdsuhdus")
+        console.log(isValidNome, isvalidEmail, isValidCPF, mesmaSenha)
+
+        if (isValidNome && isvalidEmail && isValidCPF && mesmaSenha) {
+            const body = {
+                nome,
+                email,
+                telefone,
+                cpf,
+                senha
+            }
+            console.log("cadastrar", body);
+            novoUsuario(body);
+        }
+
+        console.log("nao entrou no if burooooo")
     }
 
     const EntrarSistema = () => {
