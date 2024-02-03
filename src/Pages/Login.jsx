@@ -3,9 +3,11 @@ import '../App.css';
 import Button from "../Components/Button";
 import Input from "../Components/Input";
 import { verificaNome, verificaEmail, verificaCPF, verificaSenha, verificaMesmaSenha } from "../Util/validaLogin";
+import Entrar from "../Components/Entrar";
 
 function Login() {
     const [isLogin, setIsLogin] = useState(true);
+    const [entrar, setEntrar] = useState(true);
     const [nome, setNome] = useState();
     const [email, SetEmail] = useState();
     const [cpf, setCpf] = useState();
@@ -15,7 +17,8 @@ function Login() {
 
 
     const click = () => {
-       setIsLogin(!isLogin)
+        setIsLogin(false);
+        setEntrar(false);
     }
 
     const salvarUsuario = (e) => {
@@ -38,6 +41,16 @@ function Login() {
         }
     }
 
+    const EntrarSistema = () => {
+
+        if (isLogin){
+            setEntrar(false);
+        } else {
+            setEntrar(false);
+            setIsLogin(true);
+        }
+    }
+
 
         return (
             <div className="row overflow-hidden bg-warning">
@@ -54,9 +67,13 @@ function Login() {
                     </div>
                 </div>
                 <div className="col-6">
+                    <div className="text-end p-3 pe-5">
+                        <Button handleClick={EntrarSistema}>Login</Button>
+                        
+                    </div>
                     <div className=" position-absolute-right bg-warning">
                         {
-                            isLogin ?
+                            isLogin && entrar ?
                             <div className="width-text">
                                 <h2 className="subtitle">Cuidamos do seu pet como se fosse da família!</h2>
                                 <p className="mt-3">
@@ -66,6 +83,15 @@ function Login() {
                                 <p>
                                     Aqui você encontra especialidades da odontologica e cuida da saúde oral do seu pet até acupuntura.
                                 </p>
+                            </div>
+                            :
+                            isLogin && !entrar ?
+                            <div className="shadow p-3 mb-5 rounded width-login">
+                                <form className="text-end">
+                                <Input type="email" labelTxt="E-mail:" handleChange={(e) => SetEmail(e.target.value)} />
+                                    <Input type="password" labelTxt="Senha:" handleChange={(e) => setSenha(e.target.value)} />
+                                    <Button>Entrar</Button>                
+                                </form>
                             </div>
                             :
                             <div className="shadow p-3 mb-5 rounded width-login">
