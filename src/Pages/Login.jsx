@@ -14,6 +14,7 @@ function Login() {
     const [senha, setSenha] = useState();
     const [senha2, setSenha2] = useState();
     const [telefone, setTelefone] = useState("");
+    const [data, setData] = useState([]);
 
 
     const click = () => {
@@ -21,9 +22,9 @@ function Login() {
         setEntrar(false);
     }
 
-    const salvarUsuario = (e) => {
+    const salvarUsuario = async (e) => {
         e.preventDefault();
-        console.log("teste")
+        
         const isValidNome = verificaNome(nome);
         const isvalidEmail = verificaEmail(email);
         const isValidCPF = verificaCPF(cpf);
@@ -31,24 +32,31 @@ function Login() {
         const mesmaSenha = verificaMesmaSenha(senha, senha2);
 
         if (!isValidSenha) {
-            alert("A senha deve conter no minimo 6 digitos e um caracter especial.")
+            alert("A senha deve conter no minimo 6 digitos e um caracter especial.");
         }
-        console.log("hdsuhdus")
-        console.log(isValidNome, isvalidEmail, isValidCPF, mesmaSenha)
 
         if (isValidNome && isvalidEmail && isValidCPF && mesmaSenha) {
+            const telefoneNumero = parseInt(telefone);
             const body = {
                 nome,
                 email,
-                telefone,
+                telefone: telefoneNumero,
                 cpf,
                 senha
             }
-            console.log("cadastrar", body);
-            novoUsuario(body);
-        }
+            const result = await novoUsuario(body);
+            setData(result);
 
-        console.log("nao entrou no if burooooo")
+            redirectPage();
+        }
+    }
+
+    const redirectPage = () => {
+        if (data.administrador) {
+            alert("ADM");
+        } else {
+            alert("User normal!!!");
+        }
     }
 
     const EntrarSistema = () => {

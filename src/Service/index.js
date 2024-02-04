@@ -9,10 +9,15 @@ const loginUser = async (endpoint, body) => {
 }
 
 const createUser = async (endpoint, body) => {
-    console.log("Começar um novo");
-    const { data } = await axios.post((baseUrl + endpoint), body);
-    console.log("axios" + data);
-    return data;
+    try {
+        const { data } = await axios.post((baseUrl + endpoint), body);
+        return data;
+    } catch (e) {
+        return {
+            error: e.message
+        }
+    }
+    
 }
 export {
     loginUser,

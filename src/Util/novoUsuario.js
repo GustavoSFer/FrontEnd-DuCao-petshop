@@ -1,8 +1,7 @@
 import { createUser } from '../Service';
 
-const novoUsuario = (body) => {
-    console.log("novooo");
-    const data = createUser("/usuarios", body);
+const novoUsuario = async(body) => {
+    const data = await createUser("/usuarios", body);
 
     return data;
 }
