@@ -2,8 +2,8 @@ import axios from "axios";
 
 const baseUrl = process.env.BASE_URL || "http://localhost:8080";
 
-const loginUser = async (endpoint, body) => {
-    const { data } = await axios.post((baseUrl + endpoint), body);
+const loginUser = async (endpoint, params) => {
+    const { data } = await axios.get((baseUrl + endpoint), { params });
 
     return data;
 }

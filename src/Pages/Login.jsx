@@ -3,7 +3,7 @@ import '../App.css';
 import Button from "../Components/Button";
 import Input from "../Components/Input";
 import { verificaNome, verificaEmail, verificaCPF, verificaSenha, verificaMesmaSenha } from "../Util/validaLogin";
-import { novoUsuario } from "../Util/novoUsuario";
+import { entrarLogin, novoUsuario } from "../Util/novoUsuario";
 
 function Login() {
     const [isLogin, setIsLogin] = useState(true);
@@ -15,6 +15,7 @@ function Login() {
     const [senha2, setSenha2] = useState();
     const [telefone, setTelefone] = useState("");
     const [data, setData] = useState([]);
+    const [msg, setMsg] = useState("");
 
 
     const click = () => {
@@ -47,15 +48,7 @@ function Login() {
             const result = await novoUsuario(body);
             setData(result);
 
-            redirectPage();
-        }
-    }
-
-    const redirectPage = () => {
-        if (data.administrador) {
-            alert("ADM");
-        } else {
-            alert("User normal!!!");
+            redirectPage(result);
         }
     }
 
@@ -69,6 +62,31 @@ function Login() {
         }
     }
 
+    const loginEntrar = async(e) => {
+        e.preventDefault();
+        const params = {
+            email
+        }
+        const data = await entrarLogin(params);
+
+        if (data == "") {
+            setMsg("E-mail não encontrado!");
+        } else {
+            setMsg("");
+            setData(data);
+
+            redirectPage(data);
+        }
+        console.log(data);
+    }
+
+    const redirectPage = (user) => {
+        if (user.administrador) {
+            alert("ADM");
+        } else {
+            alert("User normal!!!");
+        }
+    }
 
         return (
             <div className="row overflow-hidden bg-warning">
@@ -105,10 +123,15 @@ function Login() {
                             :
                             isLogin && !entrar ?
                             <div className="shadow p-3 mb-5 rounded width-login">
-                                <form className="text-end">
-                                <Input type="email" labelTxt="E-mail:" handleChange={(e) => SetEmail(e.target.value)} />
-                                    <Input type="password" labelTxt="Senha:" handleChange={(e) => setSenha(e.target.value)} />
-                                    <Button>Entrar</Button>                
+                                <form>
+                                    <Input type="email" labelTxt="E-mail:" value={email} handleChange={(e) => SetEmail(e.target.value)} />
+                                    <Input type="password" labelTxt="Senha:" value={senha} handleChange={(e) => setSenha(e.target.value)} />
+                                    <div className="text-end text-danger">
+                                    { msg }
+                                    </div>
+                                    <div className="text-end">
+                                        <Button handleClick={loginEntrar}>Entrar</Button>
+                                    </div>
                                 </form>
                             </div>
                             :
