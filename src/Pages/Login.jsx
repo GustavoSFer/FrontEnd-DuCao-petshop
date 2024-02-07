@@ -77,7 +77,6 @@ function Login() {
 
             redirectPage(data);
         }
-        console.log(data);
     }
 
     const redirectPage = (user) => {
