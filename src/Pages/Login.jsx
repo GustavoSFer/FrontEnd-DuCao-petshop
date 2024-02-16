@@ -65,10 +65,12 @@ function Login() {
     const loginEntrar = async(e) => {
         e.preventDefault();
         const params = {
-            email
+            email,
+            senha
         }
-        const data = await entrarLogin(params);
 
+        const data = await entrarLogin(params);
+        console.log(data)
         if (data == "") {
             setMsg("E-mail não encontrado!");
         } else {

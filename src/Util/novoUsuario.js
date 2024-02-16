@@ -6,8 +6,8 @@ const novoUsuario = async(body) => {
     return data;
 };
 
-const entrarLogin = async(body) => {
-    const data = await loginUser("/usuarios", body);
+const entrarLogin = async(params) => {
+    const data = await loginUser("/usuarios/login", params);
 
     return data;
 };
