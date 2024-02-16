@@ -71,8 +71,8 @@ function Login() {
 
         const data = await entrarLogin(params);
         console.log(data)
-        if (data == "") {
-            setMsg("E-mail não encontrado!");
+        if (data != "" && data == "Error") {
+            setMsg("E-mail ou senha incorreto!");
         } else {
             setMsg("");
             setData(data);
