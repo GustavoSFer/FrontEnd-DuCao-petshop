@@ -70,8 +70,8 @@ function Login() {
         }
 
         const data = await entrarLogin(params);
-        console.log(data)
-        if (data != "" && data == "Error") {
+
+        if (data != "" && data == 404) {
             setMsg("E-mail ou senha incorreto!");
         } else {
             setMsg("");

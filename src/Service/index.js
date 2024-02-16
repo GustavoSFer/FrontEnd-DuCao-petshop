@@ -9,7 +9,7 @@ const loginUser = async (endpoint, params) => {
         return data;
 
     } catch (e) {
-        return "Error"
+        return e.request.status
     }
 }
 
