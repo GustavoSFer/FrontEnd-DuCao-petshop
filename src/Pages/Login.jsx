@@ -4,8 +4,11 @@ import Button from "../Components/Button";
 import Input from "../Components/Input";
 import { verificaNome, verificaEmail, verificaCPF, verificaSenha, verificaMesmaSenha } from "../Util/validaLogin";
 import { entrarLogin, novoUsuario } from "../Util/novoUsuario";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+    const history = useNavigate();
+
     const [isLogin, setIsLogin] = useState(true);
     const [entrar, setEntrar] = useState(true);
     const [nome, setNome] = useState();
@@ -83,9 +86,9 @@ function Login() {
 
     const redirectPage = (user) => {
         if (user.administrador) {
-            alert("ADM");
+            history("/homeAdm")
         } else {
-            alert("User normal!!!");
+            history("/home")
         }
     }
 
