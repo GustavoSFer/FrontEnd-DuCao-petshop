@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faGear, faLock, faPersonArrowUpFromLine, faPersonWalkingArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faLock, faPersonWalkingArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 
 

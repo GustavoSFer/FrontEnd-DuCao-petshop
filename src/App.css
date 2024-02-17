@@ -22,3 +22,24 @@
   text-decoration: none;
   color: rgba(67, 66, 66, 0.762);
 }
+
+.box-home {
+  border-radius: 8px;
+  border: 1px solid rgb(92, 92, 206);
+  margin: 10px;
+  margin-top: 15px;
+  padding: 10px;
+  min-width: 258px;
+}
+.box-home:hover {
+  background: rgb(237, 237, 238);
+  cursor: pointer;
+  border: 1px solid rgb(104, 102, 102);
+}
+
+.number-users {
+  font-size: 25px;
+  font-weight: 800;
+  color: rgb(124, 122, 122);
+  margin-left: 100px;
+}
