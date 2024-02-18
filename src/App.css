@@ -4,6 +4,42 @@
   font-family: 'Times New Roman', Times, serif;
 }
 
+.height100 {
+  height: 87vh
+}
+
+.position-absolute {
+  position: absolute;
+  top: 30%;
+  left: 5%;
+}
+
+.position-absolute-right {
+  position: absolute;
+  top: 30%;
+  right: 15%;
+}
+
+.title {
+  font-family: cursive;
+  font-size: 40px;
+  font-weight: 800;
+}
+
+.subtitle {
+  font-family: cursive;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.width-text {
+  max-width: 420px;
+}
+
+.width-login {
+  width: 450px;
+}
+
 .position {
   position: absolute;
   top: 35px;

@@ -27,7 +27,6 @@ const createUser = async (endpoint, body) => {
 const getAll = async(endpoint) => {
     try {
         const { data } = await axios.get(baseUrl + endpoint);
-        console.log(data, ">>>>>>>>")
         return data;
     } catch (e) {
         return {

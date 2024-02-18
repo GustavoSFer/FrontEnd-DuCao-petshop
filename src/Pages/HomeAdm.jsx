@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../Components/Header';
 import CardEntities from '../Components/CardEntities';
+import HtmlUser from '../Components/HtmlUser';
+import HtmlRaca from '../Components/HtmlRaca';
+import HtmlEspecie from '../Components/HtmlEspecie';
+import { getAll } from '../Service';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaw, faShield, faUsers } from '@fortawesome/free-solid-svg-icons';
-import { getAll } from '../Service';
 
 function HomeAdm() {
 
     const [usuario, setUsuario] = useState([]);
     const [raca, setRaca] = useState([]);
     const [especie, setEspecie] = useState([]);
+    const [tipo, setTipo] = useState("");
 
-    const tipoCard = ( tipo ) => {
-        console.log(tipo)
-        console.log(usuario)
+    const TipoCard = ( escolhido ) => {
+        setTipo(escolhido)
     }
-
+    
     const getFindAllUsuarios = async () => {
         const users = await getAll("/usuarios");
         setUsuario(users);
@@ -49,7 +52,7 @@ function HomeAdm() {
                     title="Usuário"
                     number={usuario.length}
                     subTitle="usuarios"
-                    handleClick={() => tipoCard("user")}
+                    handleClick={() => TipoCard("user")}
                 >
                     <FontAwesomeIcon icon={faUsers} className='me-3' />
                 </CardEntities>
@@ -58,7 +61,7 @@ function HomeAdm() {
                     title="Raça"
                     number={raca.length}
                     subTitle="raças"
-                    handleClick={() => tipoCard("raca")}
+                    handleClick={() => TipoCard("raca")}
                 >
                     <FontAwesomeIcon icon={faPaw} className='me-3' />
                 </CardEntities>
@@ -67,12 +70,26 @@ function HomeAdm() {
                     title="Especie"
                     number={especie.length}
                     subTitle="especies"
-                    handleClick={() => tipoCard("especie")}
+                    handleClick={() => TipoCard("especie")}
                 >
                     <FontAwesomeIcon icon={faShield} className='me-3' />
                 </CardEntities>             
               
             </div>
+
+            <main>
+                {
+                    tipo === "user" ?
+                        <HtmlUser />
+                    :
+                    tipo === "raca" ?
+                        <HtmlRaca />
+                    :
+                    tipo === "especie" &&
+                        <HtmlEspecie />
+                    
+                }
+            </main>
         </div>
     );
 }
