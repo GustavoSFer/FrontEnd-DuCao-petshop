@@ -3,7 +3,7 @@ import '../App.css';
 import Button from "../Components/Button";
 import Input from "../Components/Input";
 import { verificaNome, verificaEmail, verificaCPF, verificaSenha, verificaMesmaSenha } from "../Util/validaLogin";
-import { entrarLogin, novoUsuario } from "../Util/novoUsuario";
+import { entrarLogin, novoUsuario } from "../Util/HttpUsuario";
 import { useNavigate } from "react-router-dom";
 
 function Login() {

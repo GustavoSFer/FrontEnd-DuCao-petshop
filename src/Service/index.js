@@ -35,8 +35,15 @@ const getAll = async(endpoint) => {
     }
 }
 
+const deleteUser = async(endpoint) => {
+    const { data } = await axios.delete(baseUrl + endpoint);
+
+    return data;
+}
+
 export {
     loginUser,
     createUser,
     getAll,
+    deleteUser,
 }

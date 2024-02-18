@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Input from './Input';
 import Button from './Button';
 import { verificaNome, verificaEmail, verificaCPF, verificaSenha, verificaMesmaSenha } from "../Util/validaLogin";
-import { novoUsuario } from "../Util/novoUsuario";
+import { novoUsuario, deleteUsuario } from "../Util/HttpUsuario";
 import { getAll } from '../Service';
 import TdUser from './TdUser';
 
@@ -57,8 +57,11 @@ function HtmlUser() {
         setUsuario(users);
     }
 
-    const removeClick = (item) => {
-        console.log("remover>> " + item.nome);
+    const removeClick = async(item) => {
+        console.log("remover>> " + item.id);
+        const data = await deleteUsuario(item.id);
+        console.log(data)
+        return data;
     }
    
 
@@ -77,7 +80,7 @@ function HtmlUser() {
                 <Input type="password" labelTxt="Senha:" handleChange={(e) => setSenha(e.target.value)} />
                 <Input type="password" labelTxt="Confirme a senha:" handleChange={(e) => setSenha2(e.target.value)} />
                 <select name='isAdm' className='form-select mb-3' onChange={(e) => valueSelect(e.target.value)}>
-                    <option selected>Administrador</option>
+                    <option defaultValue="">Administrador</option>
                     <option value="true">Sim</option>
                     <option value="false">Não</option>
                 </select>

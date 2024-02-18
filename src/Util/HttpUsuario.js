@@ -1,4 +1,4 @@
-import { createUser, loginUser } from '../Service';
+import { createUser, loginUser, deleteUser } from '../Service';
 
 const novoUsuario = async(body) => {
     const data = await createUser("/usuarios", body);
@@ -12,7 +12,14 @@ const entrarLogin = async(params) => {
     return data;
 };
 
+const deleteUsuario = async(id) => {
+    const data = await deleteUser("/usuarios/", id);
+
+    return data;
+}
+
 export {
     novoUsuario,
-    entrarLogin
+    entrarLogin,
+    deleteUsuario
 }
