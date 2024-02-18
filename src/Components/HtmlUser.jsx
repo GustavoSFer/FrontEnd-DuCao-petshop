@@ -13,6 +13,7 @@ function HtmlUser() {
     const [senha, setSenha] = useState();
     const [senha2, setSenha2] = useState();
     const [telefone, setTelefone] = useState("");
+    const [adm, setAdm] = useState();
     const [msg, setMsg] = useState("");
     const [usuario, setUsuario] = useState([]);
     const [raca, setRaca] = useState([]);
@@ -38,13 +39,18 @@ function HtmlUser() {
                 email,
                 telefone: telefoneNumero,
                 cpf,
-                senha
+                senha,
+                administrador: adm
             }
             const result = await novoUsuario(body);
             if (result != null) {
                 setMsg("Cadastro realizado com sucesso!")
             }
         }
+    }
+
+    const valueSelect = (value) => {
+        setAdm(value);
     }
 
     const getFindAllUsuarios = async () => {
@@ -65,7 +71,7 @@ function HtmlUser() {
         getFindAllUsuarios();
         getFindAllRaca();
         getFindAllEspecie();
-    }, [usuario, raca, especie])
+    }, [])
 
     return (
         <div>
@@ -76,6 +82,11 @@ function HtmlUser() {
                 <Input type="numeric" labelTxt="Telefone:" handleChange={(e) => setTelefone(e.target.value)} />
                 <Input type="password" labelTxt="Senha:" handleChange={(e) => setSenha(e.target.value)} />
                 <Input type="password" labelTxt="Confirme a senha:" handleChange={(e) => setSenha2(e.target.value)} />
+                <select name='isAdm' className='form-select mb-3' onChange={(e) => valueSelect(e.target.value)}>
+                    <option selected>Administrador</option>
+                    <option value="true">Sim</option>
+                    <option value="false">Não</option>
+                </select>
                 <div className="text-end">
                     <Button handleClick={salvarUsuario}>Cadastrar</Button>
                 </div>
