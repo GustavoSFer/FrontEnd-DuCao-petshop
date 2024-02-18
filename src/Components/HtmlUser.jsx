@@ -95,11 +95,27 @@ function HtmlUser() {
                 </div>
             </form>
             <div>
-                <ul>
-                    <li>hehee</li>
-                    <li>hehee</li>
-                    <li>hehee</li>
-                </ul>
+                <table className='table'>
+                    <thead>
+                        <tr>
+                            <th>
+                                Nome
+                            </th>
+                            <th>
+                                CPF
+                            </th>
+                            <th>
+                                E-mail
+                            </th>
+                            <th>
+                                Telefone
+                            </th>
+                            <th>
+                                Remover
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
         </div>
     )
