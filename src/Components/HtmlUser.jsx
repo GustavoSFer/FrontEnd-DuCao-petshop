@@ -4,6 +4,7 @@ import Button from './Button';
 import { verificaNome, verificaEmail, verificaCPF, verificaSenha, verificaMesmaSenha } from "../Util/validaLogin";
 import { novoUsuario } from "../Util/novoUsuario";
 import { getAll } from '../Service';
+import TdUser from './TdUser';
 
 function HtmlUser() {
 
@@ -16,8 +17,6 @@ function HtmlUser() {
     const [adm, setAdm] = useState();
     const [msg, setMsg] = useState("");
     const [usuario, setUsuario] = useState([]);
-    const [raca, setRaca] = useState([]);
-    const [especie, setEspecie] = useState([]);
 
     const salvarUsuario = async (e) => {
         e.preventDefault();
@@ -57,20 +56,15 @@ function HtmlUser() {
         const users = await getAll("/usuarios");
         setUsuario(users);
     }
-    const getFindAllRaca = async () => {
-        const racas = await getAll("/racas");
-        setRaca(racas);
+
+    const removeClick = (item) => {
+        console.log("remover>> " + item.nome);
     }
-    const getFindAllEspecie = async () => {
-        const especies = await getAll("/especies");
-        setEspecie(especies);
-    }
+   
 
      //componentDidMount
     useEffect(() => {
         getFindAllUsuarios();
-        getFindAllRaca();
-        getFindAllEspecie();
     }, [])
 
     return (
@@ -115,6 +109,13 @@ function HtmlUser() {
                             </th>
                         </tr>
                     </thead>
+                    <tbody>
+                        {
+                            usuario.map((item) => (
+                                <TdUser  key={item.id} item={item} remove={removeClick} />
+                            ))
+                        }
+                    </tbody>
                 </table>
             </div>
         </div>
