@@ -36,6 +36,7 @@ const getAll = async(endpoint) => {
 }
 
 const deleteUser = async(endpoint) => {
+    console.log(baseUrl + endpoint)
     const { data } = await axios.delete(baseUrl + endpoint);
 
     return data;

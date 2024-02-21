@@ -43,7 +43,8 @@ function HtmlUser() {
             }
             const result = await novoUsuario(body);
             if (result != null) {
-                setMsg("Cadastro realizado com sucesso!")
+                setMsg("Cadastro realizado com sucesso!");
+                getFindAllUsuarios();
             }
         }
     }
@@ -58,9 +59,8 @@ function HtmlUser() {
     }
 
     const removeClick = async(item) => {
-        console.log("remover>> " + item.id);
         const data = await deleteUsuario(item.id);
-        console.log(data)
+        getFindAllUsuarios();
         return data;
     }
    

@@ -13,7 +13,8 @@ const entrarLogin = async(params) => {
 };
 
 const deleteUsuario = async(id) => {
-    const data = await deleteUser("/usuarios/", id);
+    console.log(id)
+    const data = await deleteUser(`/usuarios/${id}`);
 
     return data;
 }
