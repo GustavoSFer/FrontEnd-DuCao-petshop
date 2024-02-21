@@ -63,6 +63,10 @@ function HtmlUser() {
         getFindAllUsuarios();
         return data;
     }
+
+    const editar = (item) => {
+        console.log(item);
+    }
    
 
      //componentDidMount
@@ -108,14 +112,14 @@ function HtmlUser() {
                                 Telefone
                             </th>
                             <th>
-                                Remover
+                                Editar/Remover
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             usuario.map((item) => (
-                                <TdUser  key={item.id} item={item} remove={removeClick} />
+                                <TdUser  key={item.id} item={item} remove={removeClick} edit={editar} />
                             ))
                         }
                     </tbody>

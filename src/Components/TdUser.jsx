@@ -1,11 +1,11 @@
 import React from 'react';
-import Button from './Button';
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faTrashCan, faUserPen } from '@fortawesome/free-solid-svg-icons';
 
-function TdUser({ item, remove }) {
+function TdUser({ item, remove, edit }) {
+    
     return(
         <tr>
             <td>
@@ -20,7 +20,8 @@ function TdUser({ item, remove }) {
             <td>
                 { item.telefone }
             </td>
-            <td>
+            <td className='cursor'>
+            <FontAwesomeIcon icon={faUserPen} onClick={() => edit(item)} className='ms-2 me-5' />
             <FontAwesomeIcon icon={faTrashCan} onClick={() => remove(item)} />
             </td>
         </tr>

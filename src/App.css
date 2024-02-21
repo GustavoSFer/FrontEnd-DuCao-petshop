@@ -79,3 +79,8 @@
   color: rgb(124, 122, 122);
   margin-left: 100px;
 }
+
+/*TdUser*/
+.cursor {
+  cursor: pointer;
+}
