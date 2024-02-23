@@ -78,12 +78,18 @@ function HtmlRaca() {
                     { msg }
                 </div>
             </form>
-            <div>
+            <div className='p-4'>
                 <table className='table'>
                     <thead>
                         <tr>
                             <th>
+                                Editar
+                            </th>
+                            <th>
                                 Nome
+                            </th>
+                            <th>
+                                Excluir
                             </th>
                         </tr>
                     </thead>

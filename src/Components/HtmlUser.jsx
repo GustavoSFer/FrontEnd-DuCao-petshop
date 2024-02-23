@@ -156,10 +156,13 @@ function HtmlUser() {
                     { msg }
                 </div>
             </form>
-            <div>
+            <div className='p-4'>
                 <table className='table'>
                     <thead>
                         <tr>
+                            <th>
+                                Editar
+                            </th>
                             <th>
                                 Nome
                             </th>
@@ -173,7 +176,7 @@ function HtmlUser() {
                                 Telefone
                             </th>
                             <th>
-                                Editar/Remover
+                                Remover
                             </th>
                         </tr>
                     </thead>

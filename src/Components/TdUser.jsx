@@ -8,6 +8,9 @@ function TdUser({ item, remove, edit }) {
     
     return(
         <tr>
+             <td className='cursor'>
+                <FontAwesomeIcon icon={faUserPen} onClick={() => edit(item)} />
+            </td>
             <td>
                 { item.nome }
             </td>
@@ -21,8 +24,7 @@ function TdUser({ item, remove, edit }) {
                 { item.telefone }
             </td>
             <td className='cursor'>
-            <FontAwesomeIcon icon={faUserPen} onClick={() => edit(item)} className='ms-2 me-5' />
-            <FontAwesomeIcon icon={faTrashCan} onClick={() => remove(item)} />
+                <FontAwesomeIcon icon={faTrashCan} onClick={() => remove(item)} />
             </td>
         </tr>
     );
