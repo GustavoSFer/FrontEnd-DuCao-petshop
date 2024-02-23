@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import TdRaca from './TdRaca';
 import Input from './Input';
 import Button from './Button';
+import { createRaca, getAll, updateRaca } from '../Service/raca';
 
 function HtmlRaca() {
-    const [racasDb, setRacasDb] = useState("");
+    const [racasDb, setRacasDb] = useState([]);
     const [raca, setRaca] = useState("");
     const [msg, setMsg] = useState("");
     const [btnChildren, setBtnChildren] = useState("Cadastrar");
     const [id, setId] = useState("");
 
-    const getFindAllRacas = () => {
-
+    const getFindAllRacas = async() => {
+        const data = await getAll("/racas");
+        setRacasDb(data);
     }
 
     //componentDidMount
@@ -19,17 +21,47 @@ function HtmlRaca() {
         getFindAllRacas();
     }, []);
 
-    const salvarRaca = () => {
-
+    const salvarRaca = async(e) => {
+        e.preventDefault();
+        validaDados();
+        if (msg == "") {
+            const body = {
+                nome: raca,
+            }
+            if (btnChildren == "Cadastrar") {
+                await createRaca("/racas", body);
+                setMsg("Raça cadastrado com sucesso")
+                limpar();
+                getFindAllRacas();
+            } else {
+                await updateRaca(`/racas/${id}`, body)
+                limpar();
+                getFindAllRacas();
+            }
+        }
     };
 
-    const removeClick = () => {
-
+    const removeClick = (item) => {
+        console.log(item)
     };
 
-    const editar = () => {
-
+    const editar = (item) => {
+        setBtnChildren("Atualizar");
+        setId(item.id);
+        setRaca(item.nome);
     };
+
+    const validaDados = () => {
+        setMsg("");
+        if (raca == "") {
+            setMsg("O nome da raça está vazia.")
+        }
+    }
+
+    const limpar = () => {
+        setRaca("");
+        setBtnChildren("Cadastrar");
+    }
 
 
     return (

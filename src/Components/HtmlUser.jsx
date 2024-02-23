@@ -20,7 +20,7 @@ function HtmlUser() {
     const [btnChildren, setBtnChildren] = useState("Cadastrar");
     const [id, setId] = useState("");
 
-    const salvarUsuario = async (e) => {
+    const salvarUsuario = async(e) => {
         e.preventDefault();
         validaDados();
         if ( msg == "") {

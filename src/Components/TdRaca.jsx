@@ -3,7 +3,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan, faUserPen } from '@fortawesome/free-solid-svg-icons';
 
-function TdRaca() {
+function TdRaca({ item, remove, edit }) {
     return (
         <tr>
             <td>
