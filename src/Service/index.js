@@ -21,7 +21,18 @@ const createUser = async (endpoint, body) => {
         return {
             error: e.message
         }
-    }    
+    }
+}
+
+const updateUser = async(endpoint, body) => {
+    try {
+        const { data } = await axios.put((baseUrl + endpoint), body);
+        return data;
+    } catch (e) {
+        return {
+            error: e.message
+        }
+    }
 }
 
 const getAll = async(endpoint) => {
@@ -45,6 +56,7 @@ const deleteUser = async(endpoint) => {
 export {
     loginUser,
     createUser,
+    updateUser,
     getAll,
     deleteUser,
 }

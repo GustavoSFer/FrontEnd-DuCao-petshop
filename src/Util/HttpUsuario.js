@@ -1,7 +1,18 @@
-import { createUser, loginUser, deleteUser } from '../Service';
+import {
+    createUser,
+    loginUser,
+    deleteUser,
+    updateUser
+} from '../Service';
 
 const novoUsuario = async(body) => {
     const data = await createUser("/usuarios", body);
+
+    return data;
+};
+
+const atualizarUsuario = async(body, id) => {
+    const data = await updateUser(`/usuarios/${id}`, body);
 
     return data;
 };
@@ -22,5 +33,6 @@ const deleteUsuario = async(id) => {
 export {
     novoUsuario,
     entrarLogin,
-    deleteUsuario
+    deleteUsuario,
+    atualizarUsuario,
 }
