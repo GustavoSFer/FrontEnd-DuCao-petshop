@@ -3,18 +3,7 @@ import BaseUrl from "../Util/BaseUrl";
 
 const baseUrl = BaseUrl();
 
-const loginUser = async (endpoint, params) => {
-    try {
-        const { data } = await axios.post((baseUrl + endpoint), null, { params });
-    
-        return data;
-
-    } catch (e) {
-        return e.request.status
-    }
-}
-
-const createUser = async (endpoint, body) => {
+const createRaca = async (endpoint, body) => {
     try {
         const { data } = await axios.post((baseUrl + endpoint), body);
         
@@ -26,7 +15,7 @@ const createUser = async (endpoint, body) => {
     }
 }
 
-const updateUser = async(endpoint, body) => {
+const updateRaca = async(endpoint, body) => {
     try {
         const { data } = await axios.put((baseUrl + endpoint), body);
         return data;
@@ -48,17 +37,15 @@ const getAll = async(endpoint) => {
     }
 }
 
-const deleteUser = async(endpoint) => {
-    console.log(baseUrl + endpoint)
+const deleteRaca = async(endpoint) => {
     const { data } = await axios.delete(baseUrl + endpoint);
 
     return data;
 }
 
 export {
-    loginUser,
-    createUser,
-    updateUser,
+    createRaca,
+    updateRaca,
     getAll,
-    deleteUser,
+    deleteRaca,
 }
