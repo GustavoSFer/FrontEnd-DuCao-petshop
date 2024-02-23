@@ -16,6 +16,7 @@ const loginUser = async (endpoint, params) => {
 const createUser = async (endpoint, body) => {
     try {
         const { data } = await axios.post((baseUrl + endpoint), body);
+        
         return data;
     } catch (e) {
         return {

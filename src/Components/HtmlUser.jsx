@@ -8,46 +8,38 @@ import TdUser from './TdUser';
 
 function HtmlUser() {
 
-    const [nome, setNome] = useState();
-    const [email, SetEmail] = useState();
-    const [cpf, setCpf] = useState();
+    const [nome, setNome] = useState("");
+    const [email, SetEmail] = useState("");
+    const [cpf, setCpf] = useState("");
     const [senha, setSenha] = useState("");
     const [senha2, setSenha2] = useState("");
     const [telefone, setTelefone] = useState("");
-    const [adm, setAdm] = useState();
+    const [adm, setAdm] = useState("");
     const [msg, setMsg] = useState("");
     const [usuario, setUsuario] = useState([]);
     const [btnChildren, setBtnChildren] = useState("Cadastrar");
-    const [id, setId] = useState();
+    const [id, setId] = useState("");
 
     const salvarUsuario = async (e) => {
         e.preventDefault();
-        
-        const isValidNome = verificaNome(nome);
-        const isvalidEmail = verificaEmail(email);
-        const isValidCPF = verificaCPF(cpf);
-        let isValidSenha;
-        let mesmaSenha;
-
-        if ( btnChildren == "Cadastrar") {
-            if (senha == "" || senha2 == ""){
-                alert("Senha esta vazia");
-                return;
+        validaDados();
+        if ( msg == "") {
+            if (btnChildren == "Cadastrar") {
+                const isValidNome = verificaNome(nome);
+                const isvalidEmail = verificaEmail(email);
+                const isValidCPF = verificaCPF(cpf);
+                const isValidSenha = verificaSenha(senha);
+                const mesmaSenha = verificaMesmaSenha(senha, senha2);
+                
+                if (!isValidSenha) {
+                    alert("A senha deve conter no minimo 6 digitos e um caracter especial.");
+                } else if (isValidNome && isvalidEmail && isValidCPF && mesmaSenha) {
+                    cadastrar();
+                }
+            } else {
+                atualizar();
             }
-            isValidSenha = verificaSenha(senha);
-            mesmaSenha = verificaMesmaSenha(senha, senha2);
-           
-            if (!isValidSenha) {
-                alert("A senha deve conter no minimo 6 digitos e um caracter especial.");
-            } else if (!mesmaSenha) {
-                alert("As senha não são iguais.");
-            } 
-            if (isValidNome && isvalidEmail && isValidCPF && mesmaSenha) {
-                cadastrar();
-            }            
-        } else {
-            atualizar();
-        }
+        } 
     }
 
     const cadastrar = async() => {
@@ -77,13 +69,11 @@ function HtmlUser() {
             cpf,
             administrador: adm
         }        
+        await atualizarUsuario(body, id);
+        setMsg("Atualização realizado com sucesso!");
+        getFindAllUsuarios();
+        limpar();        
         setBtnChildren("Cadastrar");
-        const result = await atualizarUsuario(body, id);
-        if (result != null) {
-            setMsg("Atualização realizado com sucesso!");
-            getFindAllUsuarios();
-           limpar();
-        }
     };
 
     const valueSelect = (value) => {
@@ -106,6 +96,8 @@ function HtmlUser() {
         SetEmail("");
         setCpf("");
         setTelefone("");
+        setSenha("");
+        setSenha2("");
         setId("");
     }
 
@@ -116,6 +108,25 @@ function HtmlUser() {
         setCpf(item.cpf);
         setTelefone(item.telefone);
         setId(item.id);
+    }
+
+    const validaDados = () => {
+        setMsg("");
+        if (nome == "") {
+            setMsg("Nome está vazio.");
+        }
+        if (email == "") {
+            setMsg("E-mail está vazio.");
+        }
+        if (cpf == "") {
+            setMsg("CPF está vazio");
+        }
+        if (telefone == "") {
+            setMsg("Telefone está vazio.");
+        }
+        if ( btnChildren != "Atualizar" && (senha == "" || senha2 == "")) {
+            setMsg("Senha está vazia.");
+        }       
     }
    
 
@@ -132,7 +143,7 @@ function HtmlUser() {
                 <Input type="text" labelTxt="CPF:" value={cpf} handleChange={(e) => setCpf(e.target.value)} />
                 <Input type="numeric" labelTxt="Telefone:" value={telefone} handleChange={(e) => setTelefone(e.target.value)} />
                 <Input type="password" labelTxt="Senha:" value={senha} handleChange={(e) => setSenha(e.target.value)} />
-                <Input type="password" labelTxt="Confirme a senha:" handleChange={(e) => setSenha2(e.target.value)} />
+                <Input type="password" labelTxt="Confirme a senha:" value={senha2} handleChange={(e) => setSenha2(e.target.value)} />
                 <select name='isAdm' className='form-select mb-3' value={adm} onChange={(e) => valueSelect(e.target.value)}>
                     <option defaultValue="">Administrador</option>
                     <option value="true">Sim</option>
