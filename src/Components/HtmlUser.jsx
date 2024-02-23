@@ -133,7 +133,7 @@ function HtmlUser() {
      //componentDidMount
     useEffect(() => {
         getFindAllUsuarios();
-    }, [])
+    }, []);
 
     return (
         <div>
