@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TdRaca from './TdRaca';
 import Input from './Input';
 import Button from './Button';
-import { createRaca, getAll, updateRaca } from '../Service/raca';
+import { createRaca, deleteRaca, getAll, updateRaca } from '../Service/raca';
 
 function HtmlRaca() {
     const [racasDb, setRacasDb] = useState([]);
@@ -41,8 +41,10 @@ function HtmlRaca() {
         }
     };
 
-    const removeClick = (item) => {
-        console.log(item)
+    const removeClick = async(item) => {
+        await deleteRaca(`/racas/${item.id}`);
+        setMsg("Raça deletado com sucesso!");
+        getFindAllRacas();
     };
 
     const editar = (item) => {
