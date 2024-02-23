@@ -3,7 +3,7 @@ import BaseUrl from "../Util/BaseUrl";
 
 const baseUrl = BaseUrl();
 
-const loginUser = async (endpoint, params) => {
+const login = async (endpoint, params) => {
     try {
         const { data } = await axios.post((baseUrl + endpoint), null, { params });
     
@@ -14,7 +14,7 @@ const loginUser = async (endpoint, params) => {
     }
 }
 
-const createUser = async (endpoint, body) => {
+const create = async (endpoint, body) => {
     try {
         const { data } = await axios.post((baseUrl + endpoint), body);
         
@@ -26,7 +26,7 @@ const createUser = async (endpoint, body) => {
     }
 }
 
-const updateUser = async(endpoint, body) => {
+const update = async(endpoint, body) => {
     try {
         const { data } = await axios.put((baseUrl + endpoint), body);
         return data;
@@ -48,7 +48,7 @@ const getAll = async(endpoint) => {
     }
 }
 
-const deleteUser = async(endpoint) => {
+const deletar = async(endpoint) => {
     console.log(baseUrl + endpoint)
     const { data } = await axios.delete(baseUrl + endpoint);
 
@@ -56,9 +56,9 @@ const deleteUser = async(endpoint) => {
 }
 
 export {
-    loginUser,
-    createUser,
-    updateUser,
+    login,
+    create,
+    update,
     getAll,
-    deleteUser,
+    deletar,
 }

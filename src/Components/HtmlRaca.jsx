@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TdRaca from './TdRaca';
 import Input from './Input';
 import Button from './Button';
-import { createRaca, deleteRaca, getAll, updateRaca } from '../Service/raca';
+import { create, deletar, update, getAll } from '../Service';
 
 function HtmlRaca() {
     const [racasDb, setRacasDb] = useState([]);
@@ -29,12 +29,12 @@ function HtmlRaca() {
                 nome: raca,
             }
             if (btnChildren == "Cadastrar") {
-                await createRaca("/racas", body);
+                await create("/racas", body);
                 setMsg("Raça cadastrado com sucesso")
                 limpar();
                 getFindAllRacas();
             } else {
-                await updateRaca(`/racas/${id}`, body)
+                await update(`/racas/${id}`, body)
                 limpar();
                 getFindAllRacas();
             }
@@ -42,7 +42,7 @@ function HtmlRaca() {
     };
 
     const removeClick = async(item) => {
-        await deleteRaca(`/racas/${item.id}`);
+        await deletar(`/racas/${item.id}`);
         setMsg("Raça deletado com sucesso!");
         getFindAllRacas();
     };
