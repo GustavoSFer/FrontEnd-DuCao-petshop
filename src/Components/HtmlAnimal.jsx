@@ -164,6 +164,15 @@ function HtmlAnimal() {
                                 Nome
                             </th>
                             <th>
+                                Raça
+                            </th>
+                            <th>
+                                Especie
+                            </th>
+                            <th>
+                                Peso
+                            </th>
+                            <th>
                                 Excluir
                             </th>
                         </tr>
