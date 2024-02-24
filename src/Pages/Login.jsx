@@ -85,6 +85,7 @@ function Login() {
     }
 
     const redirectPage = (user) => {
+        localStorage.setItem("user", JSON.stringify(user));
         if (user.administrador) {
             history("/homeAdm")
         } else {
