@@ -72,15 +72,15 @@ function Login() {
             senha
         }
 
-        const data = await entrarLogin(params);
+        const result = await entrarLogin(params);
 
-        if (data != "" && data == 404) {
+        if (result != "" && result == 404) {
             setMsg("E-mail ou senha incorreto!");
         } else {
             setMsg("");
-            setData(data);
+            setData(result);
 
-            redirectPage(data);
+            redirectPage(result);
         }
     }
 

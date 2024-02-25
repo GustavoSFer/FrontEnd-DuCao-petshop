@@ -8,9 +8,7 @@ function Header() {
     const [menu, setMenu] = useState(false);
 
     const menuHeader = () => {
-        console.log("clicado")
         setMenu(!menu);
-        console.log(menu)
     }
 
     return (

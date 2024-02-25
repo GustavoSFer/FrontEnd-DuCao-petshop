@@ -4,6 +4,7 @@ import Input from './Input';
 import Button from './Button';
 import Option from './Option';
 import { create, deletar, update, getAll } from '../Service';
+import moment from 'moment/moment';
 
 
 function HtmlAnimal() {
@@ -70,7 +71,7 @@ function HtmlAnimal() {
                 limpar();
                 getFindAllAnimal();
             } else {
-                await update(`/racas/${id}`, body)
+                await update(`/animais/${id}`, body)
                 limpar();
                 getFindAllAnimal();
             }
@@ -86,7 +87,12 @@ function HtmlAnimal() {
     const editar = (item) => {
         setBtnChildren("Atualizar");
         setId(item.id);
-       // setRaca(item.nome);
+        setRaca(item.raca.id);
+        setEspecie(item.especie.id);
+        setNome(item.nome);
+        setPeso(item.peso);
+        const formattedDate = item.nascimento.substring(0, 10);
+        setNascimento(formattedDate);
     };
 
     const validaDados = () => {
@@ -121,7 +127,6 @@ function HtmlAnimal() {
         setEspecie(value);
     };
     const valueSelectRaca = (value) => {
-        console.log(value)
         setRaca(value);
     };
 
@@ -171,6 +176,9 @@ function HtmlAnimal() {
                             </th>
                             <th>
                                 Peso
+                            </th>
+                            <th>
+                                Nascimento
                             </th>
                             <th>
                                 Excluir

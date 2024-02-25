@@ -24,7 +24,6 @@ const entrarLogin = async(params) => {
 };
 
 const deleteUsuario = async(id) => {
-    console.log(id)
     const data = await deletar(`/usuarios/${id}`);
 
     return data;
