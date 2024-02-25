@@ -12,7 +12,7 @@ function Header() {
     }
 
     return (
-        <header className='border border-primary p-2'>
+        <header className='p-2'>
             <div className='text-end'>
                 <FontAwesomeIcon icon={faBars} onClick={menuHeader} />
                 {

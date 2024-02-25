@@ -79,8 +79,8 @@ function HtmlAnimal() {
     };
 
     const removeClick = async(item) => {
-        await deletar(`/racas/${item.id}`);
-        setMsg("Raça deletado com sucesso!");
+        await deletar(`/animais/${item.id}`);
+        setMsg("Animal deletado com sucesso!");
         getFindAllAnimal();
     };
 
@@ -133,7 +133,7 @@ function HtmlAnimal() {
 
     return (
         <div>
-           <form>
+           <form className='border border-secondary-subtle m-2 shadow p-2 mb-5 rounded'>
                 <select name='especie' className='form-select mb-3' value={especie} onChange={(e) => valueSelectEspecie(e.target.value)}>
                    <option value="selecionar">Selecionar</option>
                    { 

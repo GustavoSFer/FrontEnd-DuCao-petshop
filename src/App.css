@@ -43,10 +43,21 @@
 .position {
   position: absolute;
   top: 35px;
-  right: 30px;
+  right: 150px;
   border: 1px solid rgb(175, 171, 171);
   border-radius: 8px 0 8px 8px;
   padding: 10px;
+}
+
+@media only screen and (max-width: 970px) {
+  .position {
+    right: 90px;
+  }
+}
+@media only screen and (max-width: 610px) {
+  .position {
+    right: 35px;
+  }
 }
 
 .link {

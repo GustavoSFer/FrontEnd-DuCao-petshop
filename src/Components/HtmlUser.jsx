@@ -137,7 +137,7 @@ function HtmlUser() {
 
     return (
         <div>
-            <form>
+            <form className='border border-secondary-subtle m-2 shadow p-2 mb-5 rounded'>
                 <Input type="text" labelTxt="Nome:" value={nome} handleChange={(e) => setNome(e.target.value)} />
                 <Input type="email" labelTxt="E-mail:" value={email} handleChange={(e) => SetEmail(e.target.value)} />
                 <Input type="text" labelTxt="CPF:" value={cpf} handleChange={(e) => setCpf(e.target.value)} />

@@ -68,7 +68,7 @@ function HtmlEspecie() {
 
     return (
         <div>
-           <form>
+           <form className='border border-secondary-subtle m-2 shadow p-2 mb-5 rounded'>
                 <Input type="text" labelTxt="Especie:" value={especie} handleChange={(e) => setEspecie(e.target.value)} />
                    
                 <div className="text-end">
