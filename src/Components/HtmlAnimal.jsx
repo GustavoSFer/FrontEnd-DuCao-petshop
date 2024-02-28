@@ -20,6 +20,7 @@ function HtmlAnimal() {
     const [btnChildren, setBtnChildren] = useState("Cadastrar");
     const [id, setId] = useState("");
     const [user, setUser] = useState([]);
+    let [tempo, setTempo] = useState(0);
 
     const getFindAllAnimal = async() => {
         const data = await getAll("/animais");
@@ -130,9 +131,19 @@ function HtmlAnimal() {
         setRaca(value);
     };
 
+    const cronometro = () => {
+        setInterval(() => {
+            if (tempo < 5) {
+                setTempo(tempo += 1);
+            } else {
+                setMsg("");
+            }
+          }, 1000);
+    };
 
     return (
         <div>
+        <p>{tempo}</p>
            <form className='border border-secondary-subtle m-2 shadow p-2 mb-5 rounded'>
                 <select name='especie' className='form-select mb-3' value={especie} onChange={(e) => valueSelectEspecie(e.target.value)}>
                    <option value="selecionar">Selecionar</option>
@@ -191,6 +202,7 @@ function HtmlAnimal() {
                                 <TdAnimal  key={item.id} item={item} remove={removeClick} edit={editar} />
                             ))
                         }
+                        <button onClick={cronometro}>tempooo</button>
                     </tbody>
                 </table>
             </div>
