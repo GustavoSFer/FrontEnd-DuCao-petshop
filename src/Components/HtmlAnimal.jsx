@@ -4,7 +4,6 @@ import Input from './Input';
 import Button from './Button';
 import Option from './Option';
 import { create, deletar, update, getAll } from '../Service';
-import moment from 'moment/moment';
 
 
 function HtmlAnimal() {
@@ -20,7 +19,6 @@ function HtmlAnimal() {
     const [btnChildren, setBtnChildren] = useState("Cadastrar");
     const [id, setId] = useState("");
     const [user, setUser] = useState([]);
-    let [tempo, setTempo] = useState(0);
 
     const getFindAllAnimal = async() => {
         const data = await getAll("/animais");
@@ -73,9 +71,14 @@ function HtmlAnimal() {
                 getFindAllAnimal();
             } else {
                 await update(`/animais/${id}`, body)
+                setMsg("Animal Atualizado com sucesso")
                 limpar();
                 getFindAllAnimal();
             }
+
+            setTimeout(() => {
+                setMsg("");
+             }, 4000);
         }
     };
 
@@ -83,6 +86,9 @@ function HtmlAnimal() {
         await deletar(`/animais/${item.id}`);
         setMsg("Animal deletado com sucesso!");
         getFindAllAnimal();
+        setTimeout(() => {
+            setMsg("");
+         }, 4000);
     };
 
     const editar = (item) => {
@@ -97,7 +103,7 @@ function HtmlAnimal() {
     };
 
     const validaDados = () => {
-        setMsg("");
+        
         if (nome == "") {
             setMsg("O nome do animal está vazia.")
         }
@@ -131,19 +137,8 @@ function HtmlAnimal() {
         setRaca(value);
     };
 
-    const cronometro = () => {
-        setInterval(() => {
-            if (tempo < 5) {
-                setTempo(tempo += 1);
-            } else {
-                setMsg("");
-            }
-          }, 1000);
-    };
-
     return (
         <div>
-        <p>{tempo}</p>
            <form className='border border-secondary-subtle m-2 shadow p-2 mb-5 rounded'>
                 <select name='especie' className='form-select mb-3' value={especie} onChange={(e) => valueSelectEspecie(e.target.value)}>
                    <option value="selecionar">Selecionar</option>
@@ -165,7 +160,7 @@ function HtmlAnimal() {
                 <div className="text-end">
                     <Button handleClick={salvarAnimal}>{btnChildren}</Button>
                 </div>
-                <div className="text-end">
+                <div className="text-end ">
                     { msg }
                 </div>
             </form>
@@ -202,7 +197,6 @@ function HtmlAnimal() {
                                 <TdAnimal  key={item.id} item={item} remove={removeClick} edit={editar} />
                             ))
                         }
-                        <button onClick={cronometro}>tempooo</button>
                     </tbody>
                 </table>
             </div>
