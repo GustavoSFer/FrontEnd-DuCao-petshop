@@ -11,6 +11,10 @@ function Header() {
         setMenu(!menu);
     }
 
+    const sair = () => {
+        localStorage.removeItem("user");
+    }
+
     return (
         <header className='p-2'>
             <div className='text-end'>
@@ -25,7 +29,7 @@ function Header() {
                             </Link>
                         </p>
                         <p>
-                            <Link to={"/"} className='link'>
+                            <Link to={"/"} onClick={sair} className='link'>
                                 <FontAwesomeIcon icon={faPersonWalkingArrowRight} onClick={menuHeader} className='me-2' />
                                 Logout
                             </Link>
