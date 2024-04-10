@@ -4,6 +4,7 @@ import CardEntities from '../Components/CardEntities';
 import HtmlUser from '../Components/HtmlUser';
 import HtmlRaca from '../Components/HtmlRaca';
 import HtmlEspecie from '../Components/HtmlEspecie';
+import HtmlAbrirAgenda from '../Components/HtmlAbrirAgenda';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaw, faShield, faUsers } from '@fortawesome/free-solid-svg-icons';
@@ -43,7 +44,14 @@ function HomeAdm() {
                     handleClick={() => TipoCard("especie")}
                 >
                     <FontAwesomeIcon icon={faShield} className='me-3' />
-                </CardEntities>             
+                </CardEntities>
+
+                <CardEntities
+                    title="Abrir Agenda"
+                    handleClick={() => TipoCard("agenda")}
+                >
+                    <FontAwesomeIcon icon={faShield} className='me-3' />
+                </CardEntities>
               
             </div>
 
@@ -55,8 +63,11 @@ function HomeAdm() {
                     tipo === "raca" ?
                         <HtmlRaca />
                     :
-                    tipo === "especie" &&
+                    tipo === "especie" ?
                         <HtmlEspecie />
+                    :
+                    tipo === "agenda" &&
+                        <HtmlAbrirAgenda />
                     
                 }
             </main>

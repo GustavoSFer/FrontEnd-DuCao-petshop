@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Input({ type, labelTxt, handleChange, value }) {
+function Input({ type, labelTxt, handleChange, value, placeholder }) {
     return (
         <div className="input-group mb-3">
             <span className="input-group-text" id="inputGroup-sizing-default">{labelTxt}</span>
@@ -12,6 +12,7 @@ function Input({ type, labelTxt, handleChange, value }) {
                 aria-describedby="inputGroup-sizing-default"
                 onChange={handleChange}
                 value={value}
+                placeholder={placeholder}
             />
         </div>
     );
