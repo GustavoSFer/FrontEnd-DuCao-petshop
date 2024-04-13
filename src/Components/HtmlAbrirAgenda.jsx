@@ -12,20 +12,51 @@ function HtmlAbrirAgenda() {
     const [horaFim, sethoraFim] = useState("");
     const [duracao, setDuracao] = useState("");
     const [agenda, setAgenda] = useState([]);
+    const [msg, setMsg] = useState("");
+    const [isOk, setIsOk] = useState(false);
 
     const salvarAgenda = async (e) => {
         e.preventDefault();
+        setMsg("");
+        verificaInfoAgenda();
 
-        const params = {
-            dataInicio,
-            dataFim,
-            horaInicio,
-            horaFim,
-            duracao,
-        }
-        await saveAgenda("/agendas/abrirAgenda", params);
-        getFindAllAgenda();
+        if (isOk) {
+            const params = {
+                dataInicio,
+                dataFim,
+                horaInicio,
+                horaFim,
+                duracao,
+            }
+            const result = await saveAgenda("/agendas/abrirAgenda", params);
+            getFindAllAgenda();
+            setMsg(result)
+        }       
     };
+
+    const verificaInfoAgenda = () => {
+        setIsOk(true);
+        if (Date.parse(dataInicio) < Date.now()) {
+            setMsg("O dia inicial não pode ser menor ou igual à hoje!");
+            setIsOk(false);
+        }
+        if (Date.parse(dataFim) < Date.parse(dataInicio)) {
+            setMsg("O dia final não pode ser menor do que a data inicial!");
+            setIsOk(false);
+        }
+        if (dataFim == "" || dataInicio == "") {
+            setMsg("Informe a data para abrir a agenda!");
+            setIsOk(false);
+        }
+        if (horaInicio == "" || horaFim == "") {
+            setMsg("Informe o horário para abrir a agenda!");
+            setIsOk(false);
+        }
+        if (duracao == "") {
+             setMsg("Informe a duração do banho!");
+             setIsOk(false);
+        }
+    }
 
     const  getFindAllAgenda = async() => {
         setAgenda(await getAll("/agendas"));
@@ -52,6 +83,9 @@ function HtmlAbrirAgenda() {
                 <div className="text-end">
                     <Button handleClick={salvarAgenda}>Salvar</Button>
                 </div>
+                {
+                    <p>{msg}</p>
+                }
                
             </form>
             <div className="border border-light-subtle rounded-4 p-3">
