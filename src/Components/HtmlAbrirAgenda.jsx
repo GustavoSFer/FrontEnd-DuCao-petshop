@@ -84,7 +84,7 @@ function HtmlAbrirAgenda() {
                     <Button handleClick={salvarAgenda}>Salvar</Button>
                 </div>
                 {
-                    <p>{msg}</p>
+                    <p className='text-end pt-3 text-danger'>{msg}</p>
                 }
                
             </form>
