@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Input from './Input';
 import Button from './Button';
+import DadosAgenda from './DadosAgenda';
 import { getAll } from '../Service';
 
 function HtmlAbrirAgenda() {
@@ -9,6 +10,7 @@ function HtmlAbrirAgenda() {
     const [horaInicial, setHoraInicial] = useState("");
     const [horaFinal, setHoraFinal] = useState("");
     const [duracao, setDuracao] = useState("");
+    const [agenda, setAgenda] = useState([]);
 
     const salvarAgenda = (e) => {
         e.preventDefault();
@@ -16,7 +18,7 @@ function HtmlAbrirAgenda() {
     };
 
     const  getFindAllAgenda = async() => {
-        const agendas = getAll();
+        setAgenda(await getAll("/agendas"));
     };
 
      //componentDidMount
@@ -42,8 +44,7 @@ function HtmlAbrirAgenda() {
                 </div>
                
             </form>
-            <div>
-                mostrar agenda
+            <div className="border border-light-subtle rounded-4 p-3">
                 <table className='table'>
                     <thead>
                         <tr>
@@ -59,7 +60,11 @@ function HtmlAbrirAgenda() {
                         </tr>
                     </thead>
                     <tbody>
-                       
+                       {
+                        agenda.map((item) => (
+                            <DadosAgenda key={item.id} item={item} />
+                        ))
+                       }
                     </tbody>
                 </table>
             </div>
