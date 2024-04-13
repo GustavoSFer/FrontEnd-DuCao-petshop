@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Input from './Input';
 import Button from './Button';
+import ButtonPagination from './ButtonPagination';
 import DadosAgenda from './DadosAgenda';
 import { getAll } from '../Service';
 import saveAgenda from '../Service/agenda';
@@ -14,6 +15,15 @@ function HtmlAbrirAgenda() {
     const [agenda, setAgenda] = useState([]);
     const [msg, setMsg] = useState("");
     const [isOk, setIsOk] = useState(false);
+
+    // Paginação
+    const [itemPorPagina, setItemPorPagina] = useState(10);
+    const [paginaAtual, setPaginaAtual] = useState(0);
+
+    const pages = Math.ceil(agenda.length / itemPorPagina); // Verificar quando paginas teremos
+    const startIndex = paginaAtual * itemPorPagina; // Verifica qual a pagina que esta e multiplica pela quantidade que mostra por pagina (escolhi a pagina 1) = 1 * 10 = 10
+    const endIndex = startIndex + itemPorPagina; // 10 + 10 = 20
+    const itemAtual = agenda.slice(startIndex, endIndex); // 10 , 20 => mostra os item de 10 até 20
 
     const salvarAgenda = async (e) => {
         e.preventDefault();
@@ -104,14 +114,32 @@ function HtmlAbrirAgenda() {
                         </tr>
                     </thead>
                     <tbody>
-                       {
-                        agenda.map((item) => (
-                            <DadosAgenda key={item.id} item={item} />
-                        ))
-                       }
+                        {
+                            itemAtual.map((item) => (
+                                <DadosAgenda key={item.id} item={item} />
+                            ))
+                        }
                     </tbody>
                 </table>
             </div>
+            <div className='pt-3 text-end'>
+                {
+                    Array.from(Array(pages), (item, index) => {
+                        return (
+                        <ButtonPagination
+                            style="m-1"
+                            key={index}
+                            value={index}
+                            handleClick={(e) => Number(setPaginaAtual(e.target.value))}
+                            paginaAtual={paginaAtual}
+                        >
+                            {index + 1}
+                        </ButtonPagination>
+                        )
+                    })
+                }
+            </div>
+            
         </div>
     );
 }
