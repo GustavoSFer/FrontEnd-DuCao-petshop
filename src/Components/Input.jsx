@@ -13,6 +13,7 @@ function Input({ type, labelTxt, handleChange, value, placeholder }) {
                 onChange={handleChange}
                 value={value}
                 placeholder={placeholder}
+                step={1}
             />
         </div>
     );

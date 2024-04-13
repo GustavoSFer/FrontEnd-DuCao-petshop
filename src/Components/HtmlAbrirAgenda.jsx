@@ -3,18 +3,28 @@ import Input from './Input';
 import Button from './Button';
 import DadosAgenda from './DadosAgenda';
 import { getAll } from '../Service';
+import saveAgenda from '../Service/agenda';
 
 function HtmlAbrirAgenda() {
-    const [dataInicial, setDataInicial] = useState("");
-    const [dataFinal, setDataFinal] = useState("");
-    const [horaInicial, setHoraInicial] = useState("");
-    const [horaFinal, setHoraFinal] = useState("");
+    const [dataInicio, setdataInicio] = useState("");
+    const [dataFim, setdataFim] = useState("");
+    const [horaInicio, sethoraInicio] = useState("");
+    const [horaFim, sethoraFim] = useState("");
     const [duracao, setDuracao] = useState("");
     const [agenda, setAgenda] = useState([]);
 
-    const salvarAgenda = (e) => {
+    const salvarAgenda = async (e) => {
         e.preventDefault();
-        console.log(dataInicial)
+
+        const params = {
+            dataInicio,
+            dataFim,
+            horaInicio,
+            horaFim,
+            duracao,
+        }
+        await saveAgenda("/agendas/abrirAgenda", params);
+        getFindAllAgenda();
     };
 
     const  getFindAllAgenda = async() => {
@@ -30,12 +40,12 @@ function HtmlAbrirAgenda() {
         <div>
             <form className='border border-secondary-subtle m-2 shadow p-2 mb-5 rounded'>
                 <div className="d-flex justify-content-between">
-                    <Input type="date" labelTxt="Data inicial" value={dataInicial} handleChange={(e) => setDataInicial(e.target.value)} />
-                    <Input type="date" labelTxt="Data final" value={dataFinal} handleChange={(e) => setDataFinal(e.target.value)} />
+                    <Input type="date" labelTxt="Data inicial" value={dataInicio} handleChange={(e) => setdataInicio(e.target.value)} />
+                    <Input type="date" labelTxt="Data final" value={dataFim} handleChange={(e) => setdataFim(e.target.value)} />
                 </div>
                 <div className="d-flex justify-content-between">
-                    <Input type="text" labelTxt="Hora inicial" value={horaInicial} handleChange={(e) => setHoraInicial(e.target.value)} placeholder="08:00" />
-                    <Input type="text" labelTxt="Hora final" value={horaFinal} handleChange={(e) => setHoraFinal(e.target.value)} placeholder="11:30" />
+                    <Input type="time" labelTxt="Hora inicial" value={horaInicio} handleChange={(e) => sethoraInicio(e.target.value)} placeholder="08:00" />
+                    <Input type="time" labelTxt="Hora final" value={horaFim} handleChange={(e) => sethoraFim(e.target.value)} placeholder="11:30" />
                 </div>
                 <Input type="text" labelTxt="Duração" value={duracao} handleChange={(e) => setDuracao(e.target.value)} placeholder="30 (em minuto)" />
                    
